@@ -10,6 +10,7 @@ import org.springframework.stereotype.Indexed;
 
 import com.curso.domains.enums.PersonType;
 
+
 @Entity  
 @Table(name = "person")
 public abstract class Person {
@@ -36,15 +37,6 @@ public abstract class Person {
 public UUID getId() {
         return id;
     }
-
-protected UUID id;
-protected String firstName;
-protected String lastName;
-protected String cpf;
-protected String email;
-protected String password;
-protected LocalDate createdAt = LocalDate.now();
-protected Set<Integer> personType = new HashSet<>();
 
 public Person() {    
     super();

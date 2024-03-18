@@ -5,16 +5,30 @@ import java.util.UUID;
 import com.curso.domains.enums.OrderPriority;
 import com.curso.domains.enums.OrderStatus;
 
+@Entity  
+@Table(name = "serviceorder")
 public class ServiceOrder {
     
+    @Id 
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate starDate = LocalDate.now();
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate endDate;
     private String titleOS;
     private String description;
     private OrderPriority orderPriority;
     private OrderStatus orderStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "id")
     private Technician technician;
+
+    @ManyToOne
+    @JoinColumn(name = "id")
     private Users user;
 
     public ServiceOrder(){
