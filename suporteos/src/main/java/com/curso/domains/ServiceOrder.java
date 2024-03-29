@@ -2,40 +2,50 @@ package com.curso.domains;
 
 import java.time.LocalDate;
 import java.util.UUID;
+
 import com.curso.domains.enums.OrderPriority;
 import com.curso.domains.enums.OrderStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity  
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
 @Table(name = "serviceorder")
 public class ServiceOrder {
-    
-    @Id 
+
+    @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
+    
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate starDate = LocalDate.now();
-
+    
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate endDate;
     private String titleOS;
     private String description;
     private OrderPriority orderPriority;
     private OrderStatus orderStatus;
-
-    @ManyToOne
-    @JoinColumn(name = "id")
+    
+    @ManyToOne //relacao muitos para um
+    @JoinColumn(name = "idtechnician") //refere-se ao id de technician
     private Technician technician;
 
-    @ManyToOne
-    @JoinColumn(name = "id")
+    @ManyToOne //relacao muitos para um
+    @JoinColumn(name = "iduser") //refere-se ao id de users
     private Users user;
 
-    public ServiceOrder(){
+    public ServiceOrder() {
     }
 
-    public ServiceOrder(UUID id, String titleOS, String description, com.curso.domains.OrderPriority orderPriority,
-            com.curso.domains.OrderStatus orderStatus, Technician technician, Users user) {
+    public ServiceOrder(UUID id, String titleOS, String description, OrderPriority orderPriority,
+            OrderStatus orderStatus, Technician technician, Users user) {
         this.id = id;
         this.titleOS = titleOS;
         this.description = description;
@@ -141,7 +151,6 @@ public class ServiceOrder {
             return false;
         return true;
     }
+
     
-
-
 }

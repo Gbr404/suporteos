@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import com.curso.domains.enums.PersonType;
 
@@ -13,7 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-@EntityScan
+@Entity
 @Table(name = "techinician")
 public class Technician extends Person {
 
