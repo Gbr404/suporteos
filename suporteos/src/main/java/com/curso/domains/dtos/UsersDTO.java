@@ -1,22 +1,43 @@
 package com.curso.domains.dtos;
 
 
-import java.time.LocalDate; import java.util.HashSet;
+import java.time.LocalDate; 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.curso.domains.Users;
 import com.curso.domains.enums.PersonType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class UsersDTO {
 
-    protected UUID id;
-    protected String firstName; protected String lastName;
+protected UUID id;
+
+    @NotNull(message = "O campo não pode ser nulo!")
+    @NotBlank(message = "O campo não pode ser Vazio!")
+    protected String firstName;
+
+    @NotNull(message = "O campo não pode ser nulo!")
+    @NotBlank(message = "O campo não pode ser Vazio!")
+    protected String lastName;
+    
+    @NotNull(message = "O campo não pode ser nulo!")
+    @CPF(message = "O campo CPF não pode ser Vazio!")
     protected String cpf;
+    
+    @NotNull(message = "O campo não pode ser nulo!")
+    @NotBlank(message = "O campo não pode ser Vazio!")
     protected String email;
+    
+    @NotNull(message = "O campo não pode ser nulo!")
+    @NotBlank(message = "O campo não pode ser Vazio!")
     protected String password;
 
 

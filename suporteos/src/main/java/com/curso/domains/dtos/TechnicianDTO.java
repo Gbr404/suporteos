@@ -6,18 +6,37 @@ import java.time.LocalDate; import java.util.HashSet; import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import com.curso.domains.Person;
+
 import com.curso.domains.Technician;
 import com.curso.domains.enums.PersonType;
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 
 public class TechnicianDTO {
 
     protected UUID id;
-    protected String firstName; protected String lastName;
+
+    @NotNull(message =  "O campo nome não pode ser nulo")
+    @NotBlank(message =  "O campo nome não pode ser vazio")
+    protected String firstName; 
+    
+    @NotNull(message =  "O campo sobrenome não pode ser nulo")
+    @NotBlank(message =  "O campo sobrenome não pode ser vazio")
+    protected String lastName;
+
+    @NotNull(message =  "O campo CPF não pode ser nulo")
+    @NotBlank(message =  "O campo CPF não pode ser vazio")
     protected String cpf;
+
+    @NotNull(message =  "O campo e-mail não pode ser nulo")
+    @NotBlank(message =  "O campo e-mail não pode ser vazio")
     protected String email;
+
+    @NotNull(message =  "O campo senha não pode ser nulo")
+    @NotBlank(message =  "O campo senha não pode ser vazio")
     protected String password;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
